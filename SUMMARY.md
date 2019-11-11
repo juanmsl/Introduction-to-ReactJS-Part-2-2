@@ -1,4 +1,4 @@
 # Table of contents
 
-* [Initial page](README.md)
+* [Introduction to ReactJS - Part 2/2](README.md)
 
