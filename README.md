@@ -10,6 +10,8 @@ This workshop, will include advance level, so I really recommend you read the fi
 
 Now, lets review what topics we are going to see on this part
 
+#### Environment variables
+
 #### API callbacks using [Axios](https://github.com/axios/axios)
 
 #### React routing using [React Router Dom](https://reacttraining.com/react-router/web/guides/quick-start)
@@ -17,6 +19,8 @@ Now, lets review what topics we are going to see on this part
 #### React [HOC's \(Higher Order Components\)](https://en.reactjs.org/docs/higher-order-components.html)
 
 #### React lazy loading
+
+#### [React API](https://en.reactjs.org/docs/react-api.html)
 
 ## Project for this workshop
 
