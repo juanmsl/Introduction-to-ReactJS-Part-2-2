@@ -2,7 +2,9 @@
 
 Now lets define our API package to make requests to an API, and get the information, that we need to show.
 
-The API that we are going to use is [https://api.canillitapp.com/](https://api.canillitapp.com/)
+The API that we are going to use is
+
+{% embed url="https://api.canillitapp.com/" %}
 
 {% hint style="info" %}
 See the API documentation [here](https://github.com/Canillitapp/headlines-api).
@@ -67,7 +69,9 @@ List of news of day requested
 {% endapi-method-spec %}
 {% endapi-method %}
 
-**Example** [https://api.canillitapp.com/latest/2019-11-8](https://api.canillitapp.com/latest/2019-11-8)
+#### Example
+
+{% embed url="https://api.canillitapp.com/latest/2019-11-8" %}
 
 {% api-method method="get" host="https://api.canillitapp.com" path="/search/:foo" %}
 {% api-method-summary %}
@@ -124,7 +128,9 @@ List of news with foo in the title
 {% endapi-method-spec %}
 {% endapi-method %}
 
-**Example** [https://api.canillitapp.com/search/github](https://api.canillitapp.com/search/github)
+#### Example
+
+{% embed url="https://api.canillitapp.com/search/github" %}
 
 {% api-method method="get" host="https://api.canillitapp.com" path="/news/category/:id" %}
 {% api-method-summary %}
@@ -186,7 +192,9 @@ The list news related to an specific category
 {% endapi-method-spec %}
 {% endapi-method %}
 
-**Example** [https://api.canillitapp.com/news/category/4](https://api.canillitapp.com/news/category/4)
+#### Example
+
+{% embed url="https://api.canillitapp.com/news/category/4" %}
 
 {% hint style="warning" %}
 If the link examples return **Forbidden**, just copy the link and paste it in a new tab.
