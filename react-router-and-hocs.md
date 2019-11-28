@@ -100,5 +100,119 @@ And if you want to see more examples using React routes, go [here](https://react
 
 ## HOC's \(Higher Order Components\)
 
+When you want to share behaviour between components, as control your form inputs, or request an authorization token, or share a basic layout, you can use HOC's.
 
+HOC's \(Higher Order Components\), are functions that receive any component, and create another class as a wrapper of the component, the new class contains the behaviour or layout you want to add to the component, and everything you need its to pass them as a props to the component.
+
+```jsx
+import React from 'react';
+
+const withCounterHOC = (Component) => {
+    class WrapComponent extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                counter: 0
+            };
+        }
+        
+        increment = () => {
+            this.setState((prevState) => {
+                return {
+                    counter: prevState.counter + 1
+                };
+            });
+        };
+        
+        decrement = () => {
+            this.setState((prevState) => {
+                return {
+                    counter: prevState.counter - 1
+                };
+            });
+        };
+    
+        render() {
+            return <Component
+                {...this.props}
+                {...this.state}
+                incrementCount={this.increment}
+                decrementCount={this.decrement}
+            />
+        }
+    }
+    
+    return WrapComponent;
+};
+
+export default withCounterHOC;
+```
+
+As you can see the example above, the **HOC** **`withCounterHOC`** is a function, that receive a **`Component`**, and return another component \(class\) **`WrapComponent`**.
+
+This **HOC**, pass as prop to the **`Component`**, the **`counter`** state, the **`incrementCount`** and **`decrementCount`** functions.
+
+And as you can see, we pass the original **`props`** to the **`Component`** in **`line 30`**, if the **`Component`** receive another **`props`**, we are resending to it.
+
+Now lets define a component that use the HOC **`withCounterHOC`**.
+
+```jsx
+import React from 'react';
+import withCounterHOC from './withCounterHOC';
+
+class CategoryCounter extends React.Component {
+    render() {
+        const {
+            categoryName,
+            counter,
+            incrementCount,
+            decrementCount
+        } = this.props;
+    
+        return (
+            <section>
+                <h1>{categoryName}</h1>
+                <p><strong>Current count:</strong> {counter}</p>
+                <button onClick={incrementCount}>Add another one</button>
+                <button onClick={decrementCount}>Take one</button>
+            </section>
+        );
+    }
+}
+
+export default withCounterHOC(CategoryCounter);
+```
+
+Now we create a component called CategoryCounter, and we want that component have the counter functionality, so instead of create the functionality in the component, we only use our HOC.
+
+As a **HOC** is a function that receive one **`Component`** and returned **`another component`** that wrap our initial component, we just need to return the wrapped class that is returned by the HOC. As you can see it in the **`line 24`**, we send our component **`CategoryCounter`** to the **HOC** **`withCounterHOC`**, and then we **return as default the Class** that the **HOC** creates.
+
+Now we can just use our component
+
+```jsx
+import React from 'react';
+import CategoryCounter from './categoryCounter';
+
+class App extends React.Component {
+    render() {
+        return (
+            <section>
+                <CategoryCounter categoryName="Books" />
+                <CategoryCounter categoryName="Balls" />
+                <CategoryCounter categoryName="Movies" />
+            </section>
+        );
+    }
+}
+
+export default App;
+```
+
+As you can see we only need to pass the **`categoryName`** as props,  because the other props are passed by the **HOC** when the component **`CategoryCounter`** is exported.
+
+If you want to create another component with the counter functionality, you only need to use the **HOC**, and receive the **`counter`** and the **`functions that manipulates the counter`** as props.
+
+{% hint style="info" %}
+Read more about HOC's [here](https://en.reactjs.org/docs/higher-order-components.html).
+{% endhint %}
 
