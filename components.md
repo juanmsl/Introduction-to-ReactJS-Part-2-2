@@ -2,6 +2,14 @@
 
 Now lets create the components that we gonna use
 
+## Form
+
+As we see in the design of the app, we need an Input to handle the search parameter, but as an intermediate workshop of React, lets create a modular component to handle our forms.
+
+### Input component
+
+The input component its quite simple, we only receive as **props** the **`type`** and **`defaultValue`** of the input, then in the state we need to handle his value when **`onChange`** method is triggered. At last just pass the **`props`** and **`state`** to the input field.
+
 {% code title="src/components/form/input/index.js" %}
 ```jsx
 import React from 'react';
@@ -42,6 +50,14 @@ class Input extends React.Component {
 export default Input;
 ```
 {% endcode %}
+
+### Form component
+
+Now the **Form component** will handle the state of each **Form field** it will receive as child, for that reason, I use the methods of **React API** **`React.Children`** and  **`React.cloneElement`** to add custom props for each child.
+
+{% hint style="info" %}
+If you want to know more about the React API, and their methods, [follow his documentation](https://en.reactjs.org/docs/react-api.html).
+{% endhint %}
 
 {% code title="src/components/form/index.js" %}
 ```jsx
@@ -92,6 +108,18 @@ export {default as Input} from './input';
 ```
 {% endcode %}
 
+## Main components
+
+### Header
+
+Now the **Header component** needs to handle the **`state`** of the search input, so we use the **`Form component`** with an **`Input component`** as a child. Then when the form is **submitted** we push the **search value** to the url path using **React Router HOC** **`withRouter`**.
+
+We can use 3 props that **React Router** have to handle the routing of our app, and we can have it in our component using the **HOC** **`withRouter`** as you can see it on **`line 22`** of the code below.
+
+{% hint style="info" %}
+It pass 3 props, location, match, history. To know more about it see [React Router Documentation about withRouter HOC](https://reacttraining.com/react-router/core/api/withRouter).
+{% endhint %}
+
 {% code title="src/components/header/index.js" %}
 ```jsx
 import React from 'react';
@@ -119,6 +147,8 @@ export default withRouter(Header);
 ```
 {% endcode %}
 
+### Navbar
+
 {% code title="src/components/navbar/index.js" %}
 ```jsx
 import React from 'react';
@@ -141,6 +171,10 @@ const Navbar = ({items, location}) => (
 export default withRouter(Navbar);
 ```
 {% endcode %}
+
+## News cards
+
+### LoadImage
 
 {% code title="src/components/loadImage/index.js" %}
 ```jsx
@@ -180,6 +214,8 @@ class LoadImage extends React.Component {
 export default LoadImage;
 ```
 {% endcode %}
+
+### Card
 
 {% code title="src/components/card/index.js" %}
 ```jsx
