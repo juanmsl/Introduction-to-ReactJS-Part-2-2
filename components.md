@@ -1,7 +1,5 @@
 # Components
 
-Now lets create the components that we gonna use
-
 ## Form
 
 As we see in the design of the app, we need an Input to handle the search parameter, but as an intermediate workshop of React, lets create a modular component to handle our forms.
