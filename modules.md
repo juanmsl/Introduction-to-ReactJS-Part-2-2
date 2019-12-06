@@ -1,9 +1,18 @@
 # Modules
 
+Now that we have created the components and HOC's, lets create our app, the 3 views \(Home, Search and Category\) are very similar, they fetch the data from the API, and display the news in the page. The difference is which endpoint will request, and the parameters that view receives.
+
+### Home page
+
+The **home page component** fetch the data the first time \(each time\) component its **mounted**, I use **`moment`** library to get the **current date**, and use the method that we create in **API** package **`API.getLatest`**to fetch the data.
+
+Then we only handle the state of the component that is the **news list**, and render it using the **HOC** **`RenderCardHOC`**, and using the **HOC** **`ContainerHOC`** to integrate the layout of **`Header`** and **`Navbar`** with it.
+
+And I use the package **`nprogress`** to show a load bar in the top of the page.
+
 {% code title="src/modules/home/index.js" %}
 ```jsx
 import React from 'react';
-import {withRouter} from "react-router-dom";
 import API from "api";
 import NProgress from "nprogress";
 import moment from "moment";
@@ -40,9 +49,11 @@ class Home extends React.Component {
   }
 }
 
-export default RenderCardHOC(ContainerHOC(withRouter(Home)));
+export default RenderCardHOC(ContainerHOC(Home));
 ```
 {% endcode %}
+
+### Search page
 
 {% code title="src/modules/search/index.js" %}
 ```jsx
@@ -102,6 +113,8 @@ class Search extends React.Component {
 export default RenderCardHOC(ContainerHOC(withRouter(Search)));
 ```
 {% endcode %}
+
+### Category Page
 
 {% code title="src/modules/category/index.js" %}
 ```jsx
