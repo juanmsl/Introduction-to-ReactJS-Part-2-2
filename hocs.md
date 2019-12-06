@@ -1,5 +1,9 @@
 # HOC's
 
+### ContainerHOC
+
+This **HOC** is to share between each view \(home, categories and search\) the layout of **header** and **navbar**.
+
 {% code title="src/hocs/container/index.js" %}
 ```jsx
 import React from 'react';
@@ -37,6 +41,10 @@ const ContainerHOC = (Children) => (
 export default ContainerHOC;
 ```
 {% endcode %}
+
+### RenderCardHOC
+
+This **HOC** creates the logic about how each view needs to render a NewsCard, so the method **`renderCards`** is the prop we send to the component that use this HOC.
 
 {% code title="src/hocs/renderCard/index.js" %}
 ```jsx
