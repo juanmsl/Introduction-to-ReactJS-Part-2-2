@@ -55,6 +55,10 @@ export default RenderCardHOC(ContainerHOC(Home));
 
 ### Search page
 
+Now for the **Search component** I use he **HOC** **`withRouter`** to extract the param in the **`pathname`** with the prop **`match`**.
+
+In this component I use the method that we create **`API.getSearch`**, and it should fetch the data when the component its **mounted** and when the component **updated** in the param in the pathname.
+
 {% code title="src/modules/search/index.js" %}
 ```jsx
 import React from 'react';
@@ -75,7 +79,6 @@ class Search extends React.Component {
   getData = (searchValue) => {
     NProgress.start();
     NProgress.inc();
-    console.log(searchValue);
     API.getSearch(searchValue, (response) => {
       NProgress.done();
       this.setState({data: response.data});
@@ -115,6 +118,8 @@ export default RenderCardHOC(ContainerHOC(withRouter(Search)));
 {% endcode %}
 
 ### Category Page
+
+Al last the **Category component** receive as param the **category name**, but we need the **category id** to fetch the data, so we use the **constants** that we create, to know the id.
 
 {% code title="src/modules/category/index.js" %}
 ```jsx
