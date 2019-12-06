@@ -147,6 +147,10 @@ export default withRouter(Header);
 
 ### Navbar
 
+The **navbar component** just will receive the items as a **prop**, where each item is an object with **`href`** and **`text`** of the link.
+
+And at last use the **HOC** **`withRouter`**, to receive the **`location`** prop, and know the current **`pathname`** of our app.
+
 {% code title="src/components/navbar/index.js" %}
 ```jsx
 import React from 'react';
@@ -173,6 +177,8 @@ export default withRouter(Navbar);
 ## News cards
 
 ### LoadImage
+
+This component is to show an image while the original image its loading. Only use the event **`onLoad`** over the **`img`**.
 
 {% code title="src/components/loadImage/index.js" %}
 ```jsx
@@ -214,6 +220,8 @@ export default LoadImage;
 {% endcode %}
 
 ### Card
+
+At last the Card component is to show each of the news.
 
 {% code title="src/components/card/index.js" %}
 ```jsx
